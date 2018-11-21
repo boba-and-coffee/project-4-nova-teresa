@@ -11,16 +11,14 @@ const app = {
 app.url = 'https://developers.zomato.com/api/v2.1/location_details?entity_id=89&entity_type=city';
 
 
-// Collect user input
-// app.collectInfo = function () {
-
-// }
+// app.userInput = input[type="text"].val()
+// console.log(userInput)
 
 /**
  * Make AJAX request with user inputted data
  * @param query User input for location
  */
-app.getLocation = function getLocation(query) {
+app.getLocation = function(query) {
     return $.ajax({
         method: 'GET',
         crossDomain: true,
@@ -34,23 +32,24 @@ app.getLocation = function getLocation(query) {
             query: query
         },
     }).then((res) => {
-        // app.displayInfo();
         console.log(res);
 
-        app.entityId = res.location_suggestions[0].entity_id;;
-        
+        app.locationId = res.location_suggestions[0].city_id;
         // change to next page div
         // call next page function
+        // console.log(app.locationId);
 
-        return app.entityId;
+        // return app.locationId;
+        app.getCuisine(app.locationId);
     });
 };
 
-app.getCuisine = function getCuisine(city_id) {
+app.getCuisine = function(city_id) {
+    console.log('getCuisine', city_id)
     $.ajax({
         method: 'GET',
         crossDomain: true,
-        url: app.cuisinesUrl,
+        url: app.cuisineUrl,
         dataType: 'json',
         async: true,
         headers: {
@@ -60,30 +59,41 @@ app.getCuisine = function getCuisine(city_id) {
             city_id: city_id
         },
     }).then((res) => {
-        // app.displayInfo();
-        console.log(res);
-
+        console.log('hello');
+        console.log('CUISINE', res);
+        
         // save cusiine
 
         // jquery navigate fn
     });
 };
 
+// check to see how to get a restaurant from a cuisine
+//create another function that will grab the names of all of the cuisines returned
+// return those names in an array 
+// something in between
+// for every item in the array make a call to get the restaurant
+
+ app.getCuisineArray = function (locationId){
+    app.cuisinesArray = []
+    app.cuisine = res.cuisines.cuisine.cuisine_name
+    for (let cuisine in cuisines) {
+        if(indexOf(app.cuisine == -1)) {
+            app.cuisinesArray.push(app.cuisine) 
+        }
+    }
+    return cuisinesArray 
+}
 
 
-// Display data on the page
-app.displayInfo = function (res) {
-    res.forEach()
 
-};
+
 
 // Start app
 app.init = function () {
-
-    app.getLocation()
-        
+    app.getLocation('new york')
     //pass in the user input 
-    app.getCuisine(app.getLocation)
+    // app.getCuisine();
 };
 
 app.geolocateUser = function() {
