@@ -4,7 +4,7 @@ const app = {
     baseUrl: zomatoUrl,
     locationsUrl: zomatoUrl + '/locations',
     cuisineUrl : zomatoUrl + '/cuisines',
-    categories: zomatoUrl + '/categories',
+    restaurantUrl: zomatoUrl + '/search',
     key: '96da6937114a6901ec154be1338c5427',
 };
 
@@ -34,13 +34,13 @@ app.getLocation = function(query) {
     }).then((res) => {
         console.log(res);
 
-        app.locationId = res.location_suggestions[0].city_id;
+        app.locationId = res.location_suggestions[0].city_id; //returns a number 
         // change to next page div
         // call next page function
         // console.log(app.locationId);
 
         // return app.locationId;
-        app.getCuisine(app.locationId);
+        app.getCuisine(app.locationId); //calling the getCusine , passing in the number that was returned from getLocation
     });
 };
 
@@ -49,7 +49,7 @@ app.getCuisine = function(city_id) {
     $.ajax({
         method: 'GET',
         crossDomain: true,
-        url: app.cuisineUrl,
+        url: app.restaurantUrl,
         dataType: 'json',
         async: true,
         headers: {
@@ -59,31 +59,51 @@ app.getCuisine = function(city_id) {
             city_id: city_id
         },
     }).then((res) => {
-        console.log('hello');
-        console.log('CUISINE', res);
+        console.log(res)
+        app.getCuisineArray(res);
         
-        // save cusiine
 
         // jquery navigate fn
     });
 };
 
 // check to see how to get a restaurant from a cuisine
+    //from the info we get from getCusine ; we need cusine_name array for user selection purposes, cusine_id array will be saved and passed into the 'search' API to populate restaurant list
 //create another function that will grab the names of all of the cuisines returned
 // return those names in an array 
 // something in between
 // for every item in the array make a call to get the restaurant
 
- app.getCuisineArray = function (locationId){
-    app.cuisinesArray = []
-    app.cuisine = res.cuisines.cuisine.cuisine_name
-    for (let cuisine in cuisines) {
-        if(indexOf(app.cuisine == -1)) {
-            app.cuisinesArray.push(app.cuisine) 
-        }
-    }
-    return cuisinesArray 
-}
+/**
+ * cuisineArray is an array of objects that has two properties : cuisine_id and cuisine_name
+ * cuisineEntry is the indiviudal objects we are looking at in each 'cuisines array' returned by API call
+ */
+ app.getCuisineArray = function (res){
+   app.cuisineArray = res.cuisines.map(function(cuisineEntry){
+        return cuisineEntry.cuisine
+    });
+    return app.cuisineArray;
+    } 
+
+
+//access the cuisineArray to get the cuisineName and pass into the serach call 
+app.getRestaurant = function (cuisine_id) {
+        $.ajax({
+            method: 'GET',
+            crossDomain: true,
+            url: app.restaurantUrl,
+            dataType: 'json',
+            async: true,
+            headers: {
+                'user-key': app.key
+            },
+            data: {
+                cuisines: cuisine_id
+            },
+        }).then((res) => {
+            console.log(res)
+        });
+    };
 
 
 
@@ -91,33 +111,33 @@ app.getCuisine = function(city_id) {
 
 // Start app
 app.init = function () {
-    app.getLocation('new york')
+    app.getLocation('boston')
+    app.getRestaurant(6);
     //pass in the user input 
-    // app.getCuisine();
 };
 
-app.geolocateUser = function() {
-    var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
+// app.geolocateUser = function() {
+//     var options = {
+//         enableHighAccuracy: true,
+//         timeout: 5000,
+//         maximumAge: 0
+//     };
 
-    function success(pos) {
-        var crd = pos.coords;
+//     function success(pos) {
+//         var crd = pos.coords;
 
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-    }
+//         console.log('Your current position is:');
+//         console.log(`Latitude : ${crd.latitude}`);
+//         console.log(`Longitude: ${crd.longitude}`);
+//         console.log(`More or less ${crd.accuracy} meters.`);
+//     }
 
-    function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
+//     function error(err) {
+//         console.warn(`ERROR(${err.code}): ${err.message}`);
+//     }
 
-    navigator.geolocation.getCurrentPosition(success, error, options);
-}
+//     navigator.geolocation.getCurrentPosition(success, error, options);
+// }
 
 
 //document ready 
