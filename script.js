@@ -11,8 +11,14 @@ const app = {
 app.url = 'https://developers.zomato.com/api/v2.1/location_details?entity_id=89&entity_type=city';
 
 
-// app.userInput = input[type="text"].val()
-// console.log(userInput)
+app.startApp = function () {
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        app.userInput = $("#userInput").val();
+        app.getLocation(app.userInput)
+        console.log(app.userInput)
+    });
+}
 
 /**
  * Make AJAX request with user inputted data
@@ -32,7 +38,7 @@ app.getLocation = function(query) {
             query: query
         },
     }).then((res) => {
-        console.log(res);
+        // console.log(res);
 
         app.locationId = res.location_suggestions[0].city_id; //returns a number 
         // change to next page div
@@ -49,7 +55,7 @@ app.getCuisine = function(city_id) {
     $.ajax({
         method: 'GET',
         crossDomain: true,
-        url: app.restaurantUrl,
+        url: app.cuisineUrl,
         dataType: 'json',
         async: true,
         headers: {
@@ -79,9 +85,13 @@ app.getCuisine = function(city_id) {
  * cuisineEntry is the indiviudal objects we are looking at in each 'cuisines array' returned by API call
  */
  app.getCuisineArray = function (res){
+    //  console.log('in cuisine array',res)
    app.cuisineArray = res.cuisines.map(function(cuisineEntry){
         return cuisineEntry.cuisine
     });
+    console.log('what is this arraw', app.cuisineArray);
+    // create UI  (dropbox)
+    // selecting cuisines, pass in the array of objects cuisine, extract the name to display , but id is 
     return app.cuisineArray;
     } 
 
@@ -101,18 +111,23 @@ app.getRestaurant = function (cuisine_id) {
                 cuisines: cuisine_id
             },
         }).then((res) => {
-            console.log(res)
+            // console.log(res)
         });
     };
 
+//questions : only shows 20 restaurant/ array , how do we chain it to make more calls?
+//get cuisine returns an array of objects that returns 2 propertys : cuisine_name and cuisine_id , we only want certain names, 
+    //come up with a list of cuisine names that WE WANT --> extract that cuisine object from the cuisineArray (that way the associated ID can be used to passed into get restaurant)
 
-
-
+   
 
 // Start app
 app.init = function () {
-    app.getLocation('boston')
-    app.getRestaurant(6);
+    app.startApp();
+   
+    //on submit of form, store the input value in variable, and pass the variable in as an arguement to app.getLocation();
+    // app.getLocation('toronto')
+    // app.getRestaurant(6);
     //pass in the user input 
 };
 
