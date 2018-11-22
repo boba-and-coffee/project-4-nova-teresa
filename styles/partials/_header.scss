@@ -1,0 +1,69 @@
+.headerImage {
+    width:100%;
+    max-width:100vw;
+    min-height:100vh;
+    background: url(../../assets/img1.jpg);
+    background-size:cover;
+    padding:10% 0;
+    // margin:0;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        color:$secondaryColor;
+        // margin:0;
+        font-size:2.5rem;
+        // border:1px solid red;
+        // display:inline;
+        letter-spacing:2px;
+        text-align:center;
+
+        span {
+            font-size: 3rem;
+            display:block;
+            text-transform:uppercase;
+            
+        }
+    }
+
+    .titleIcon {
+        width:7%;
+        
+        
+
+        img {
+            width:100%;
+            color:$secondaryColor;
+        }
+    }
+
+    .searchBar {
+        // margin-top:10%;
+        // padding-left:40%;
+        // border:1px solid red;
+        // width:20%;
+        display:flex;
+        margin-right:2%;
+
+        .input {
+            background: lighten($primaryColor, 10);
+            color:$secondaryColor;
+            padding:5% 15%;
+            border:2px solid $primaryColor;
+            margin-right:2%;
+            border-radius:20px 25px;
+            // display:inline;
+        }
+    
+
+        .search {
+            background: lighten($primaryColor,10);
+            color:$secondaryColor;
+            padding:5%;
+            border-radius:50%;
+            border:2px solid $primaryColor;
+            // display:inline;
+        }
+    }
+}

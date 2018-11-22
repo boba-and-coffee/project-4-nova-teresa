@@ -4,9 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>project-4</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>What Do Tonight?</title>
 </head>
 <body>
+    <!-- HEADER -->
+    <header onload="randombg()">
+        <div id="random" class="headerImage">
+
+            <h1>What To <span>Do Tonight?</span></h1>
+
+            <div class="titleIcon">
+                <img src="assets/dinnericon.svg" alt="">
+            </div>
+            
+            <form action="" class="searchBar">
+                 <input type="text" placeholder="What city are you in?" id="userInput" class="input">
+                <label for="userInput"></label>
+
+                <button type="submit" class="search"><i class="fas fa-search"></i></button>
+            </form>
+
+        </div>
+    </header>
+    <!-- HEADER ENDS -->
+
+
+    <!-- SELECTION -->
+    <section>
+        <div class="wrapper" id="select">
+
+            <div class="cuisinesSection">
+
+                <div class="cuisinesForm">
+                    <form action="">
+                        <label for="cuisines">Choose A Cuisine!</label>
+                        <select name="cuisines" id="selectCuisines">
+                            <option value="">Asian</option>
+                            <option value="">Italian</option>
+                            <option value="">Canadian</option>
+                            <option value="">South Asian</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="drinksSection">
+                <div class="drinksForm">
+                    <form action="">
+                        <label for="drinks">Choose A Drink!</label>
+                        <select name="cuisines" id="selectCuisines">
+                            <option value="">Bubble Tea</option>
+                            <option value="">Coffee</option>
+                            <option value="">Smoothies</option>
+                        </select>
+                    </form>
+                    <a href="#results">Submit</a>
+                </div>
+            <!-- <a href="#results">Submit</a> -->
+        </div>
+    </section>
+    <!-- SELECTION ENDS -->
+
+    <!-- RESULTS -->
+    <section class="resultsSection">
+        <div class="results wrapper" id="results">
+
+            <div class="cuisineResults">
+                <h2>${RESTAURANT NAME}</h2>
+                <div class="imageResults">
+                    <img src="${IMG URL}" alt="">
+                </div>
+                <p>${RESTAURANT LOCATION}</p>
+
+            </div>
+
+            <div class="drinkResults">
+                <h2>${DRINK NAME}</h2>
+                <div class="imageResults">
+                    <img src="${DRINK URL}" alt="">
+                </div>
+                <p>${DRINK NAME}</p>
+
+            </div>
+
+        </div>
+    </section>
     
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- <script src="project2.js"></script> -->
+    <script>
+
+        function randombg() {
+            var random = Math.floor(Math.random() * 3);
+            var bgArray = [
+                "url"
+            ]
+        }
+
+    </script>
 </body>
 </html>

@@ -1,0 +1,46 @@
+// section {
+//     background:lighten($primaryColor, 10);
+// }
+
+// .wrapper {
+//     margin: 0;
+//     max-width:1280px;
+//     // width:100%;
+//     // background:lighten($primaryColor, 10);
+//     border:1px solid red;
+
+.cuisinesSection, .drinksSection {
+    width:100%;
+    height:100vh;
+    border:1px solid red;
+}
+
+.cuisinesSection {
+    background:lighten($primaryColor, 10);
+}
+
+.drinksSection {
+    background:lighten($primaryColor, 15);
+}
+    // .cuisinesSection, .drinksSection {
+    //     width:50%;
+    //     min-height:100vh;
+    //     // border:1px solid red;
+
+    //     form {
+    //         padding:5%;
+    //         // align-items: center;
+
+    //          label {
+    //         display:block;
+    //         }
+    //     }
+    // }
+
+    // a {
+    //     display:inline;
+    //     // border:1px solid red;
+    //     padding:0;
+    //     margin:0;
+    // }
+// }
