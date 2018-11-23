@@ -20,6 +20,9 @@ app.startApp = function () {
     });
 }
 
+// for every item in the array make a call to get the restaurant
+
+
 /**
  * Make AJAX request with user inputted data
  * @param query User input for location
@@ -67,18 +70,11 @@ app.getCuisine = function(city_id) {
     }).then((res) => {
         console.log(res)
         app.getCuisineArray(res);
-        
-
         // jquery navigate fn
     });
 };
 
-// check to see how to get a restaurant from a cuisine
-    //from the info we get from getCusine ; we need cusine_name array for user selection purposes, cusine_id array will be saved and passed into the 'search' API to populate restaurant list
-//create another function that will grab the names of all of the cuisines returned
-// return those names in an array 
-// something in between
-// for every item in the array make a call to get the restaurant
+
 
 /**
  * cuisineArray is an array of objects that has two properties : cuisine_id and cuisine_name
@@ -92,8 +88,14 @@ app.getCuisine = function(city_id) {
     console.log('what is this arraw', app.cuisineArray);
     // create UI  (dropbox)
     // selecting cuisines, pass in the array of objects cuisine, extract the name to display , but id is 
+    
+    app.cuisineArray.forEach(cuisine => {
+        $('#selectCuisines').append(`<option value="${cuisine.cuisine_id}">${cuisine.cuisine_name}</option>`)
+    });
     return app.cuisineArray;
-    } 
+} 
+
+
 
 
 //access the cuisineArray to get the cuisineName and pass into the serach call 

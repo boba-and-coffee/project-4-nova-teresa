@@ -41,12 +41,10 @@
                 <div class="cuisinesForm">
                     <form action="">
                         <label for="cuisines">Choose A Cuisine!</label>
-                        <select name="cuisines" id="selectCuisines">
-                            <option value="">Asian</option>
-                            <option value="">Italian</option>
-                            <option value="">Canadian</option>
-                            <option value="">South Asian</option>
+                        <select name="cuisines" id="selectCuisines" placeholder="Choose a cuisine">
+                            <option value="">Choose a cuisine</option>
                         </select>
+                        <button class="submitCuisine"><i class="fas fa-search" id="cuisineSubmit"></i></button>
                     </form>
                 </div>
             </div>
@@ -95,7 +93,7 @@
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- <script src="project2.js"></script> -->
+    <script src="script.js"></script>
     <script>
 
         function randombg() {
