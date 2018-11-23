@@ -12,9 +12,9 @@ app.url = 'https://developers.zomato.com/api/v2.1/location_details?entity_id=89&
 
 
 app.startApp = function () {
-    $('form').on('submit', function (e) {
+    $('.searchBar').on('submit', function (e) {
         e.preventDefault();
-        app.userInput = $("#userInput").val();
+        app.userInput = $('#userInput').val();
         app.getLocation(app.userInput)
         console.log(app.userInput)
     });
@@ -74,6 +74,16 @@ app.getCuisine = function(city_id) {
     });
 };
 
+app.submitCuisine = function () {
+    $('.cuisinesForm').on('submit', function (e) {
+        e.preventDefault();
+        app.userCuisine = $('#selectCuisines option:selected').val();
+        console.log($('#selectCuisines option:selected').val());
+        // app.getRestaurant(app.userCuisine);
+        // returns the cuisineID
+    });
+}
+
 
 
 /**
@@ -85,7 +95,7 @@ app.getCuisine = function(city_id) {
    app.cuisineArray = res.cuisines.map(function(cuisineEntry){
         return cuisineEntry.cuisine
     });
-    console.log('what is this arraw', app.cuisineArray);
+    console.log('this is the cuisineArray', app.cuisineArray);
     // create UI  (dropbox)
     // selecting cuisines, pass in the array of objects cuisine, extract the name to display , but id is 
     
@@ -113,7 +123,7 @@ app.getRestaurant = function (cuisine_id) {
                 cuisines: cuisine_id
             },
         }).then((res) => {
-            // console.log(res)
+            console.log(res)
         });
     };
 
