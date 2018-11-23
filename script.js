@@ -44,11 +44,7 @@ app.getLocation = function(query) {
         // console.log(res);
 
         app.locationId = res.location_suggestions[0].city_id; //returns a number 
-        // change to next page div
-        // call next page function
-        // console.log(app.locationId);
 
-        // return app.locationId;
         app.getCuisine(app.locationId); //calling the getCusine , passing in the number that was returned from getLocation
     });
 };
@@ -68,7 +64,7 @@ app.getCuisine = function(city_id) {
             city_id: city_id
         },
     }).then((res) => {
-        console.log(res)
+        // console.log(res)
         app.getCuisineArray(res);
         // jquery navigate fn
     });
@@ -78,9 +74,9 @@ app.submitCuisine = function () {
     $('.cuisinesForm').on('submit', function (e) {
         e.preventDefault();
         app.userCuisine = $('#selectCuisines option:selected').val();
-        console.log($('#selectCuisines option:selected').val());
-        // app.getRestaurant(app.userCuisine);
-        // returns the cuisineID
+        console.log('cuisine id is ',app.userCuisine);// returns the cuisineID
+        app.getRestaurant(app.userCuisine);
+
     });
 }
 
@@ -109,7 +105,7 @@ app.submitCuisine = function () {
 
 
 //access the cuisineArray to get the cuisineName and pass into the serach call 
-app.getRestaurant = function (cuisine_id) {
+app.getRestaurant= function (cuisine_id) {
         $.ajax({
             method: 'GET',
             crossDomain: true,
@@ -123,19 +119,31 @@ app.getRestaurant = function (cuisine_id) {
                 cuisines: cuisine_id
             },
         }).then((res) => {
-            console.log(res)
+            console.log('rest info returned from API',res)
+            app.getRestaurantObject(res);          
         });
+    
     };
+
+
+
+app.getRestaurantObject = function (res) {
+    console.log('this should be the restaurantObject')
+   console.log(app.restaurantObject = res.restaurants[Math.floor(Math.random() * res.restaurants.length)])
+    
+}
 
 //questions : only shows 20 restaurant/ array , how do we chain it to make more calls?
 //get cuisine returns an array of objects that returns 2 propertys : cuisine_name and cuisine_id , we only want certain names, 
     //come up with a list of cuisine names that WE WANT --> extract that cuisine object from the cuisineArray (that way the associated ID can be used to passed into get restaurant)
 
-   
+
 
 // Start app
 app.init = function () {
     app.startApp();
+    app.submitCuisine();
+
    
     //on submit of form, store the input value in variable, and pass the variable in as an arguement to app.getLocation();
     // app.getLocation('toronto')
