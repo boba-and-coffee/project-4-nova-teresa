@@ -1,11 +1,8 @@
 .resultsSection {
     background:lighten($primaryColor, 10);
-     
+    display:flex;     
 }
 
-.results {
-    display:flex;
-}
 
 .cuisineResults, .drinkResults {
     border:1px solid red;
@@ -14,4 +11,15 @@
     min-height:100vh;
     width:50%;
     
+}
+
+footer {
+    background:$primaryColor;
+    text-align:center;
+    padding:0.5% 0;
+    
+    P {
+        margin:0;
+        padding:0;
+    }
 }
