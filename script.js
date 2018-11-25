@@ -11,16 +11,21 @@ const app = {
 app.url = 'https://developers.zomato.com/api/v2.1/location_details?entity_id=89&entity_type=city';
 
 
-app.startApp = function () {
+app.setupLocationForm = function () {
     $('.searchBar').on('submit', function (e) {
         e.preventDefault();
         app.userInput = $('#userInput').val();
         app.getLocation(app.userInput)
+            .then(() => {
+                displayCity(app.locationName);
+                return app.getCuisine(app.locationId);
+            })
+            .then(() => {
+                $('#cuisines').get(0).scrollIntoView(true);
+            })
         console.log(app.userInput)
     });
 }
-
-// for every item in the array make a call to get the restaurant
 
 
 /**
@@ -41,17 +46,32 @@ app.getLocation = function(query) {
             query: query
         },
     }).then((res) => {
-        // console.log(res);
+        console.log(res);
 
-        app.locationId = res.location_suggestions[0].city_id; //returns a number 
-
-        app.getCuisine(app.locationId); //calling the getCusine , passing in the number that was returned from getLocation
+        if (res.location_suggestions.length > 0) {
+            app.locationId = res.location_suggestions[0].city_id; //returns a number 
+            app.locationName = res.location_suggestions[0].city_name;
+    
+        } else {
+            $('#userInput').val(''); //set the string of userInput back to an empty string
+           
+            swal('No results. Please enter a valid City!')
+                .then(() => {
+                    $('#userInput').focus();
+                })
+            throw "No results"; // When locationId is null, throw an exception to skip the 'then' block in onsetupLocationForm.
+        }
     });
 };
 
+const displayCity = function(locationName){
+    $('.cityName').empty();
+    $('#cuisines').prepend(`<h2 class="cityName"><span class="preTitle">Looking in</span>${locationName}</h2>`)
+}
+
 app.getCuisine = function(city_id) {
     console.log('getCuisine', city_id)
-    $.ajax({
+    return $.ajax({
         method: 'GET',
         crossDomain: true,
         url: app.cuisineUrl,
@@ -70,13 +90,22 @@ app.getCuisine = function(city_id) {
     });
 };
 
-app.submitCuisine = function () {
+app.setupCuisineForm = function () {
     $('.cuisinesForm').on('submit', function (e) {
         e.preventDefault();
         app.userCuisine = $('#selectCuisines option:selected').val();
         console.log('cuisine id is ',app.userCuisine);// returns the cuisineID
-        app.getRestaurant(app.userCuisine);
 
+        app.getRestaurant(app.userCuisine)
+            .then((res) => {
+                console.log('rest info returned from API', res)
+                
+                const restDetails = app.getRestaurantDetails(res);
+                app.displayRestaurantDetails(restDetails);
+                
+                $('.resultsSection').get(0).scrollIntoView(true);
+                $('#setupCuisineForm').prop("disabled", true);
+            });
     });
 }
 
@@ -102,54 +131,81 @@ app.submitCuisine = function () {
 } 
 
 
-
-
 //access the cuisineArray to get the cuisineName and pass into the serach call 
-app.getRestaurant= function (cuisine_id) {
-        $.ajax({
-            method: 'GET',
-            crossDomain: true,
-            url: app.restaurantUrl,
-            dataType: 'json',
-            async: true,
-            headers: {
-                'user-key': app.key
-            },
-            data: {
-                cuisines: cuisine_id
-            },
-        }).then((res) => {
-            console.log('rest info returned from API',res)
-            app.getRestaurantObject(res);          
-        });
-    
+app.getRestaurant = function (cuisine_id) {
+    return $.ajax({
+        method: 'GET',
+        crossDomain: true,
+        url: app.restaurantUrl,
+        dataType: 'json',
+        async: true,
+        headers: {
+            'user-key': app.key
+        },
+        data: {
+            cuisines: cuisine_id
+        },
+    });
+};
+
+app.getRestaurantDetails = function (res) {
+    const restaurantObject = res.restaurants[Math.floor(Math.random() * res.restaurants.length)].restaurant;
+    console.log(restaurantObject);
+
+    const restDetails = {
+        name: restaurantObject.name,
+        categories: restaurantObject.cuisines,
+        price_range_symbol: getPriceRangeSymbol(restaurantObject.price_range),
+        // currency: restaurantObject.currency,
+        address: restaurantObject.location.address,
+        rating: restaurantObject.user_rating.aggregate_rating,
+        photos_url: restaurantObject.photos_url,
+        menu_url: restaurantObject.menu_url,
     };
+    console.log(restDetails);
 
-
-
-app.getRestaurantObject = function (res) {
-    console.log('this should be the restaurantObject')
-   console.log(app.restaurantObject = res.restaurants[Math.floor(Math.random() * res.restaurants.length)])
-    
+    return restDetails;
 }
 
-//questions : only shows 20 restaurant/ array , how do we chain it to make more calls?
-//get cuisine returns an array of objects that returns 2 propertys : cuisine_name and cuisine_id , we only want certain names, 
-    //come up with a list of cuisine names that WE WANT --> extract that cuisine object from the cuisineArray (that way the associated ID can be used to passed into get restaurant)
+
+const getPriceRangeSymbol = function getPriceRange(price_range){
+    const priceRangeSymbols = [ '$', '$$', '$$$','$$$$','$$$$$'];
+    return priceRangeSymbols[price_range - 1];
+};
+ 
+
+app.displayRestaurantDetails = function (restDetails){
+    $('.cuisineResults').empty()
+    $('.cuisineResults').append(
+        `<h2 class="restTitle"> ${restDetails.name} </h2>
+        <div><span class="infoTitle">Categories</span>${restDetails.categories}</div>
+        <div><span class="infoTitle">Price range</span>${restDetails.price_range_symbol}</div>
+        <div><span class="infoTitle">Rating<span>${restDetails.rating}</div>
+        <div><span class="infoTitle">Address</span>${restDetails.address}</div>
+        <div><span class="infoTitle">Photos</span><a href='${restDetails.photos_url}' target='_blank'>Photos here</a></div>
+        <div><span class="infoTitle">Menu</span><a href='${restDetails.menu_url}' target='_blank'>Menu here</a></div>
+        `
+        // < div > <span class="infoTitle"></span></div >
+        // <div><span class="infoTitle"></span></div>
+
+        );
+}
+
+
+
 
 
 
 // Start app
 app.init = function () {
-    app.startApp();
-    app.submitCuisine();
-
-   
-    //on submit of form, store the input value in variable, and pass the variable in as an arguement to app.getLocation();
-    // app.getLocation('toronto')
-    // app.getRestaurant(6);
-    //pass in the user input 
+    app.setupLocationForm();
+    app.setupCuisineForm();
 };
+
+//document ready 
+$(function () {
+    app.init();
+}); //document  ready ends 
 
 // app.geolocateUser = function() {
 //     var options = {
@@ -175,8 +231,4 @@ app.init = function () {
 // }
 
 
-//document ready 
-$(function(){
-    app.init();
 
-}) //document  ready ends 

@@ -21,9 +21,8 @@
             
             <form action="" class="searchBar animated bounceInUp">
                 <label for="userInput"></label>
-                 <input type="text" placeholder="What city are you in?" id="userInput" class="input">
-                <a class="search" href="#cuisines" title="search cuisines in that city"><i class="fas fa-search"></i></a>
-                <!-- <button type="submit" class="search"><i class="fas fa-search"></i></button> -->
+                 <input type="text" placeholder="What city are you in?" id="userInput" class="input" required>
+                <button type="submit" class="search btn" title="Search cuisines in that city"><i class="fas fa-search"></i></button>
             </form>
 
         </div>
@@ -34,27 +33,29 @@
     <!-- SELECTION -->
     <section class="selectionSection">
         <div class="cuisinesSection" id="cuisines">
-            <h2>You Chose <span>{CityName}!</span></h2>
+            <!-- <h2>You Chose <span>{CityName}!</span></h2> -->
                 <form class="cuisinesForm form" action="">
                 <form action="" class="form">
                     <label for="cuisines">Choose A Cuisine!</label>
                     <select name="cuisines" id="selectCuisines" required>
                         <option value="" selected disabled>Choose a cuisine</option>
                     </select>
-                    <button type="submit" class="submitCuisine"><i class="fas fa-search" id="cuisineSubmit"></i></button>
-                    <a href="#drinks" title="jump to drinks selection">Next Selection</a>
+                    <button class="btn"type="submit" title ="Show what associated restaurants in the area" id="submitCuisine"> Show restaurant
+                        
+                    </button>
+                    <!-- <a href="#drinks" title="jump to drinks selection">Next Selection</a> -->
                 </form>
-            </div>
+        </div>
 
-            <div class="drinksSection" id="drinks">
-            <h2>You Chose <span>{CUISINE}!</span></h2>
-                <form action="" class="form drinksForm">
-                    <label for="drinks">Choose A Drink!</label>
-                    <select name="cuisines" id="selectCuisines">
-                    <!-- <option value="">Bubble Tea</option>-->
+        <!-- <div class="drinksSection" id="drinks">
+        <h2>You Chose <span>{CUISINE}!</span></h2>
+            <form action="" class="form drinksForm">
+                <label for="drinks">Choose A Drink!</label>
+                <select name="cuisines" id="selectCuisines">
+                    <option value="">Bubble Tea</option>
                 </select>
-                <a href="#results" title="jump to results">Find out where we're going</a>
-                </form>
+            <a href="#results" title="jump to results">Find out where we're going</a>
+            </form> -->
     </section>
     <!-- SELECTION ENDS -->
 
@@ -62,21 +63,20 @@
     <!-- RESULTS -->
     <section class="resultsSection">
 
-            <div class="cuisineResults" id="results">
-                <h2>${RESTAURANT NAME}</h2>
-                <div class="imageResults">
-                    <img src="${IMG URL}" alt="">
-                </div>
-                <p>${RESTAURANT LOCATION}</p>
-            </div>
+            <div class="cuisineResults" id="results"></div>
+            <button id="anotherSuggestion" class="btn">Another one<button>
+            <label for="anotherSuggestion"></label>
 
-            <div class="drinkResults">
+            <input type="submit" value="New Search" class="btn"id="newSearch">
+            <label for="newSearch"></label>
+
+            <!-- <div class="drinkResults">
                 <h2>${DRINK NAME}</h2>
                 <div class="imageResults">
                     <img src="${DRINK URL}" alt="">
                 </div>
                 <p>${DRINK NAME}</p>
-            </div>
+            </div> -->
 
     </section>
     <!-- SECTION ENDS -->
@@ -87,13 +87,14 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="script.js"></script>
 
     <script>
-        var imgCount = 3;
-        var dir = 'assets/';
-        var randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
-        var images = new Array
+        const imgCount = 3;
+        const dir = 'assets/';
+        const randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
+        const images = new Array
             images[1] = "img1.jpg",
             images[2] = "img2.jpg",
             images[3] = "img3.jpg",

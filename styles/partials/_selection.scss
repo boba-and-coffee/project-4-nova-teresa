@@ -3,6 +3,12 @@
     margin:10% 0;
 }
 
+.restTitle {
+    text-align:center;
+    margin:10% 0;
+}
+
+
 .cuisinesSection, .drinksSection {
     height:100vh;
     border:1px solid black;
@@ -32,11 +38,11 @@
             margin:2% 0;
         }
 
-        a {
-            text-decoration:none;
-            padding: 2%;
-            background:$primaryColor;
-        }
+        // a {
+        //     text-decoration:none;
+        //     padding: 2%;
+        //     background:$primaryColor;
+        // }
 
     }
 
