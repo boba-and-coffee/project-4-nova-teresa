@@ -99,8 +99,8 @@ app.setupCuisineForm = function () {
         app.getRestaurant(app.userCuisine)
             .then((res) => {
                 console.log('rest info returned from API', res)
-                
-                const restDetails = app.getRestaurantDetails(res);
+                app.restaurants = res.restaurants;
+                const restDetails = app.getRestaurantDetails(app.restaurants);
                 app.displayRestaurantDetails(restDetails);
                 
                 $('.resultsSection').get(0).scrollIntoView(true);
@@ -148,8 +148,13 @@ app.getRestaurant = function (cuisine_id) {
     });
 };
 
-app.getRestaurantDetails = function (res) {
-    const restaurantObject = res.restaurants[Math.floor(Math.random() * res.restaurants.length)].restaurant;
+/**
+ * getRestaurantDetails will randomly return a restaurant from the API, and subsequently display the restaurant details. 
+ * @param restaurants is the name of object returned by API , restaurant is also an object nested in restaurants
+ * restaurantObject is then the indiviudal restaurant we want
+ */
+app.getRestaurantDetails = function (restaurants) {
+    const restaurantObject = restaurants[Math.floor(Math.random() * restaurants.length)].restaurant;
     console.log(restaurantObject);
 
     const restDetails = {
@@ -192,14 +197,28 @@ app.displayRestaurantDetails = function (restDetails){
 }
 
 
+app.setupNewSuggestion = function (){
+    $('#anotherSuggestion').on('click',function(e){
+        e.preventDefault();
+        const restDetails = app.getRestaurantDetails(app.restaurants);
+        app.displayRestaurantDetails(restDetails);
+    })
+}
 
-
+app.setupNewSearch = function () {
+    $('#newSearchForm').on('submit', function() {
+        console.log('new search')
+        return true;
+    });
+}
 
 
 // Start app
 app.init = function () {
     app.setupLocationForm();
     app.setupCuisineForm();
+    app.setupNewSuggestion();
+    app.setupNewSearch();
 };
 
 //document ready 
