@@ -11,79 +11,48 @@
     <title>What Do Tonight?</title>
 </head>
 <body>
-    <!-- HEADER -->
     <header id="random" class="animated fadeIn">
         <div class="header">
-
             <h1 class="animated fadeInLeftBig">What to 
                 <img src="assets/dinnericon.svg" alt="">
-            <span>do tonight?</span></h1>
+            <span>do tonight?</span>
+            </h1>
             
             <form action="" class="searchBar animated bounceInUp">
                 <label for="userInput"></label>
                  <input type="text" placeholder="What city are you in?" id="userInput" class="input" required>
                 <button type="submit" class="search btn" title="Search cuisines in that city"><i class="fas fa-search"></i></button>
             </form>
-
         </div>
     </header>
-    <!-- HEADER ENDS -->
-
 
     <!-- SELECTION -->
     <section class="selectionSection">
         <div class="cuisinesSection" id="cuisines">
-            <!-- <h2>You Chose <span>{CityName}!</span></h2> -->
-                <form class="cuisinesForm form" action="">
-                <form action="" class="form">
-                    <label for="cuisines">Choose A Cuisine!</label>
-                    <select name="cuisines" id="selectCuisines" required>
-                        <option value="" selected disabled>Choose a cuisine</option>
-                    </select>
-                    <button class="btn"type="submit" title ="Show what associated restaurants in the area" id="submitCuisine"> Show restaurant
-                        
-                    </button>
-                    <!-- <a href="#drinks" title="jump to drinks selection">Next Selection</a> -->
-                </form>
+            <form class="cuisinesForm form" action="">
+                <label for="cuisines">Choose A Cuisine!</label>
+                <select name="cuisines" id="selectCuisines" required>
+                    <option value="" selected disabled>Choose a cuisine</option>
+                </select>
+                <label for="submitCuisine"></label>
+                <button class="btn"type="submit" title ="Show what associated restaurants in the area" id="submitCuisine"> Show restaurant</button>
+            </form>
         </div>
 
-        <!-- <div class="drinksSection" id="drinks">
-        <h2>You Chose <span>{CUISINE}!</span></h2>
-            <form action="" class="form drinksForm">
-                <label for="drinks">Choose A Drink!</label>
-                <select name="cuisines" id="selectCuisines">
-                    <option value="">Bubble Tea</option>
-                </select>
-            <a href="#results" title="jump to results">Find out where we're going</a>
-            </form> -->
     </section>
-    <!-- SELECTION ENDS -->
-
 
     <!-- RESULTS -->
     <section class="resultsSection">
+        <div class="cuisineResults" id="results"></div>
+        <!-- buttons -->
+        <form id="newSearchForm"> 
+            <label for="anotherSuggestion"></label>
+            <button id="anotherSuggestion" class="btn">Another one</button>
 
-            <div class="cuisineResults" id="results"></div>
-            <form id="newSearchForm">
-
-                <button id="anotherSuggestion" class="btn">Another one</button>
-                <label for="anotherSuggestion"></label>
-    
-                <button type="submit" value="New Search" class="btn" id="newSearch"> New Search </button>
-        
-                <label for="newSearch"></label>
-            </form>
-
-            <!-- <div class="drinkResults">
-                <h2>${DRINK NAME}</h2>
-                <div class="imageResults">
-                    <img src="${DRINK URL}" alt="">
-                </div>
-                <p>${DRINK NAME}</p>
-            </div> -->
-
+            <label for="newSearch"></label>
+            <button type="submit" value="New Search" class="btn" id="newSearch"> New Search </button>
+        </form>
     </section>
-    <!-- SECTION ENDS -->
 
     <!-- FOOTER -->
     <footer>
@@ -95,34 +64,22 @@
     <script src="script.js"></script>
 
     <script>
-        const imgCount = 3;
-        const dir = 'assets/';
-        const randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
-        const images = new Array
-            images[1] = "img1.jpg",
-            images[2] = "img2.jpg",
-            images[3] = "img3.jpg",
+        // const imgCount = 3;
+        // const dir = 'assets/';
+        // const randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
+        // const images = new Array
+        //     images[1] = "img1.jpg",
+        //     images[2] = "img2.jpg",
+        //     images[3] = "img3.jpg",
 
 
 
         //document ready
         $(function(){
-            document.getElementById("random").style.background = "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(" + dir + images[randomCount] + ") no-repeat center";
+            // document.getElementById("random").style.background = "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(" + dir + images[randomCount] + ") no-repeat center";
 
-            // $('button').on('click', function (event) {
-            //         var target = $(this.getAttribute('href'));
-            //         if (target.length) {
-            //             event.preventDefault();
-            //             $('html, body').stop().animate({
-            //                 scrollTop: target.offset().top
-            //             }, 1000);
-            //         }
-            //     });
-
+                // $("#random").css("background","linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(" + dir + images[randomCount] + ") no-repeat center");
         });
-
-      
-
 
     </script>
 </body>

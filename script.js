@@ -10,6 +10,18 @@ const app = {
 
 app.url = 'https://developers.zomato.com/api/v2.1/location_details?entity_id=89&entity_type=city';
 
+setupBackground = function () {
+    const imgCount = 3;
+    const dir = 'assets/';
+    const randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
+    const images = new Array
+    images[1] = "img1.jpg",
+        images[2] = "img2.jpg",
+        images[3] = "img3.jpg",
+
+    $("#random").css("background", "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(" + dir + images[randomCount] + ") no-repeat center");
+};
+
 
 app.setupLocationForm = function () {
     $('.searchBar').on('submit', function (e) {
@@ -215,6 +227,7 @@ app.setupNewSearch = function () {
 
 // Start app
 app.init = function () {
+    setupBackground();
     app.setupLocationForm();
     app.setupCuisineForm();
     app.setupNewSuggestion();
