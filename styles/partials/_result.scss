@@ -9,7 +9,7 @@
 .restDetailsWrapper {
     text-align:left;
     width: 600px;
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .restTitle {
@@ -26,8 +26,14 @@
 }
 
 
-#anotherSuggestion #newSearch {
-    margin: 50px 0;
+#anotherSuggestion, #newSearch {
+    @include buttonStyle;
+    margin: 80px 20px 50px 20px;
+    &:hover {
+        background-color: $accentColor;
+    }
+    border: 1px solid $secondaryColor;
+
 }
 
 

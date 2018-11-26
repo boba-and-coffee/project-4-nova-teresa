@@ -212,11 +212,12 @@ body footer {
 #random {
   height: 100vh;
   max-height: 1000px;
+  min-height: 600px;
 }
 
 #random .header {
   margin: 0 auto;
-  padding: 10% 0;
+  padding: 100px 0;
   text-align: center;
   width: 800px;
 }
@@ -225,15 +226,14 @@ body footer {
   color: whitesmoke;
   font-size: 4.5rem;
   letter-spacing: 2px;
-  text-align: left;
+  text-align: center;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   display: inline-block;
-  padding-left: 75px;
 }
 
 #random .header h1 span {
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   display: block;
   text-align: center;
   text-transform: capitalize;
@@ -241,7 +241,7 @@ body footer {
 }
 
 #random .header img {
-  width: 20%;
+  width: 175px;
 }
 
 #random .header .searchBar {
@@ -255,7 +255,7 @@ body footer {
   width: 300px;
   text-align: center;
   border: 1px solid #767676;
-  margin-right: 2%;
+  margin-right: 10px;
   border-radius: 20px 20px;
   opacity: 0.85;
 }
@@ -385,8 +385,17 @@ input:focus {
   opacity: 0.9;
 }
 
-#anotherSuggestion #newSearch {
-  margin: 50px 0;
+#anotherSuggestion, #newSearch {
+  background: black;
+  border: none;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 80px 20px 50px 20px;
+  border: 1px solid whitesmoke;
+}
+
+#anotherSuggestion:hover, #newSearch:hover {
+  background-color: #c46003;
 }
 
 footer {
