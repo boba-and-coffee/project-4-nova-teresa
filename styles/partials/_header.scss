@@ -1,10 +1,11 @@
 #random {
     height: 100vh;
     max-height: 1000px;
+    min-height: 600px;
 
     .header {
         margin: 0 auto;
-        padding: 10% 0;
+        padding: 100px 0;
         text-align: center;
         width: 800px;
         
@@ -13,15 +14,14 @@
             font-size: $largeFontSize;
 
             letter-spacing:2px;
-            text-align:left;
+            text-align: center;
             font-family:$primaryFont;
             text-transform:uppercase;
 
             display: inline-block;
-            padding-left: 75px;
 
             span {
-                font-size: 3.5rem;
+                font-size: $largeFontSize;
                 display:block;
                 text-align:center;
                 text-transform:capitalize;
@@ -30,7 +30,7 @@
         }
 
         img {
-            width:20%;
+            width: 175px;
         }
 
         .searchBar {
@@ -43,7 +43,7 @@
                 width: 300px;
                 text-align: center;
                 border: 1px solid darken($secondaryColor, 50);
-                margin-right:2%;
+                margin-right: 10px;
                 border-radius:20px 20px;
                 opacity:0.85;
 
