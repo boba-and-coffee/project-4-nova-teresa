@@ -8,6 +8,8 @@ const app = {
     key: '96da6937114a6901ec154be1338c5427',
 };
 
+window.app = app;
+
 app.url = 'https://developers.zomato.com/api/v2.1/location_details?entity_id=89&entity_type=city';
 
 // Start app
@@ -189,6 +191,8 @@ app.getRestaurantDetails = function (restaurants) {
     };
     console.log(restDetails);
 
+    window.details = restDetails;
+
     return restDetails;
 }
 
@@ -200,20 +204,33 @@ const getPriceRangeSymbol = function getPriceRange(price_range){
  
 
 app.displayRestaurantDetails = function (restDetails){
-    $('.cuisineResults').empty()
     $('.cuisineResults').html(
         `<h2 class="restTitle"> ${restDetails.name} </h2>`
     )
     $('.restDetailsWrapper').html(
         `
-        <div><span class="infoTitle">Categories</span>${restDetails.categories}</div>
-        <div><span class="infoTitle">Price range</span>${restDetails.price_range_symbol}</div>
-        <div><span class="infoTitle">Rating</span>${restDetails.rating}</div>
-        <div><span class="infoTitle">Address</span>${restDetails.address}</div>
-        <div><span class="infoTitle">Photos</span><a href='${restDetails.photos_url}' target='_blank'>Photos here</a></div>
-        <div><span class="infoTitle">Menu</span><a href='${restDetails.menu_url}' target='_blank'>Menu here</a></div>
+        <div class="infoDiv">
+            <span class="infoTitle">Categories</span>${restDetails.categories}
+        </div>
+        <div class="infoDiv">
+            <span class="infoTitle">Price range</span>${restDetails.price_range_symbol}
+        </div>
+        <div class="infoDiv">
+            <span class="infoTitle">Rating</span>${restDetails.rating}
+        </div>
+        <div class="infoDiv">
+            <span class="infoTitle">Address</span>${restDetails.address}
+        </div>
+        <div class="infoDiv">
+            <span class="infoTitle">Photos</span><a href='${restDetails.photos_url}' target='_blank'>View Photos</a>
+        </div>
+        <div class="infoDiv">
+            <span class="infoTitle">Menu</span><a href='${restDetails.menu_url}' target='_blank'>View Menu</a>
+        </div>
         `
     );
+
+    $('.restDetailsWrapper').addClass('hasContent');
 }
 
 
@@ -236,6 +253,17 @@ app.setupNewSearch = function () {
 //document ready 
 $(function () {
     app.init();
+
+    // for testing
+    // app.displayRestaurantDetails({
+    //     "name": "Helmand",
+    //     "categories": "Afghani, Mediterranean, Middle Eastern",
+    //     "price_range_symbol": "$$$",
+    //     "address": "806 N Charles St, Baltimore 21201",
+    //     "rating": "4.5",
+    //     "photos_url": "https://www.zomato.com/baltimore/helmand-baltimore/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
+    //     "menu_url": "https://www.zomato.com/baltimore/helmand-baltimore/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop"
+    //   });
 }); 
 //document  ready ends 
 

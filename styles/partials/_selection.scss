@@ -10,6 +10,12 @@
     } 
 }
 
+#selectCuisines {
+    appearance: none; 
+    border: none;
+    height: 40px;
+}
+
 .cuisinesOptions {
     font-size:$mediumFontSize;
 }

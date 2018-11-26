@@ -19,6 +19,7 @@ body {
     footer {
         @include primaryFont($smallFontSize);
         letter-spacing:0;
+        padding: 15px 0;
     }
     
     background: $primaryColorLighter;
