@@ -335,8 +335,12 @@ input:focus {
   border: 1px solid whitesmoke;
 }
 
-#submitCuisine:hover {
+#submitCuisine:hover:enabled {
   background-color: #c46003;
+}
+
+#submitCuisine[disabled] {
+  background-color: #4d4d4d;
 }
 
 .cuisinesSection {
@@ -362,8 +366,9 @@ input:focus {
 
 .resultsSection {
   background: #1a1a1a;
-  width: 1 00%;
-  height: 500px;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
   text-align: center;
 }
 
@@ -375,8 +380,9 @@ input:focus {
 
 .restTitle {
   padding: 50px 0;
-  margin: 0;
+  margin: 0 auto;
   font-size: 4.5rem;
+  width: 800px;
 }
 
 .infoTitle {
@@ -394,7 +400,7 @@ input:focus {
   border: 1px solid whitesmoke;
 }
 
-#anotherSuggestion:hover, #newSearch:hover {
+#anotherSuggestion:hover:enabled, #newSearch:hover:enabled {
   background-color: #c46003;
 }
 

@@ -29,8 +29,12 @@
 #submitCuisine {
     @include buttonStyle;
     margin: 30px 0 50px 0;
-    &:hover {
+    &:hover:enabled {
         background-color: $accentColor;
+    }
+
+    &[disabled] {
+        background-color: lighten($primaryColor, 30);
     }
 
     border: 1px solid $secondaryColor;

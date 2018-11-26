@@ -127,12 +127,10 @@ app.setupCuisineForm = function () {
                 app.displayRestaurantDetails(restDetails);
                 $('#anotherSuggestion, #newSearch').show();
                 $('.resultsSection').get(0).scrollIntoView(true);
-                $('#setupCuisineForm').prop("disabled", true);
+                $('#submitCuisine').prop("disabled", true);
             });
     });
 }
-
-
 
 /**
  * cuisineArray is an array of objects that has two properties : cuisine_id and cuisine_name
@@ -152,7 +150,6 @@ app.setupCuisineForm = function () {
     });
     return app.cuisineArray;
 } 
-
 
 //access the cuisineArray to get the cuisineName and pass into the serach call 
 app.getRestaurant = function (cuisine_id) {
@@ -204,10 +201,10 @@ const getPriceRangeSymbol = function getPriceRange(price_range){
 
 app.displayRestaurantDetails = function (restDetails){
     $('.cuisineResults').empty()
-    $('.cuisineResults').append(
+    $('.cuisineResults').html(
         `<h2 class="restTitle"> ${restDetails.name} </h2>`
     )
-    $('.restDetailsWrapper').append(
+    $('.restDetailsWrapper').html(
         `
         <div><span class="infoTitle">Categories</span>${restDetails.categories}</div>
         <div><span class="infoTitle">Price range</span>${restDetails.price_range_symbol}</div>
@@ -216,7 +213,7 @@ app.displayRestaurantDetails = function (restDetails){
         <div><span class="infoTitle">Photos</span><a href='${restDetails.photos_url}' target='_blank'>Photos here</a></div>
         <div><span class="infoTitle">Menu</span><a href='${restDetails.menu_url}' target='_blank'>Menu here</a></div>
         `
-        );
+    );
 }
 
 
