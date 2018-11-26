@@ -5,6 +5,12 @@ html {
     scroll-behavior: smooth;
 }
 
+.wrapper {
+    max-width: 1500px;
+    width: 1500px;
+    margin: 0 auto;
+}
+
 .btn {
     @include buttonStyle
 }
@@ -25,8 +31,3 @@ body {
     background: $primaryColorLighter;
 }
 
-.wrapper {
-    max-width: 1500px;
-    width: 1500px;
-    margin: 0 auto;
-}

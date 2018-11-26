@@ -1,0 +1,38 @@
+@media(max-width:321px){
+    .wrapper {
+        max-width: 320px;
+        width: 320px;
+    }
+
+    #random .header {
+        width: 280px;
+        padding: 50px 0;
+
+    }
+
+    .restDetailsWrapper{
+        width:260px;
+    }
+
+    .restTitle {
+        width:320px;
+    }
+    
+    .searchBar {
+        width:280px;
+
+    }
+
+    #random .header .searchBar .input {
+        width:200px;
+    }
+
+    #anotherSuggestion, #newSearch{
+        margin:50px 20px 10px 20px;
+    }
+
+    body input {
+        font-size: $smallFontSize;
+    }
+
+}
