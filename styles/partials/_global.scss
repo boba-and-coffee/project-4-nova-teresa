@@ -1,36 +1,33 @@
-$primaryFont: 'Montserrat', sans-serif;
-$titleFont: 'Noto Serif', serif;
 
-$primaryColor: black;
-$secondaryColor: whitesmoke;
 
 html {
     font-size:62.5%;
-    font-family:$primaryFont;
     scroll-behavior: smooth;
 }
 
+.wrapper {
+    max-width: 1500px;
+    width: 1500px;
+    margin: 0 auto;
+}
 
-//Typography
-
-@mixin primaryFont($size) {
-    font-family: $primaryFont;
-    color:$secondaryColor;
-    text-transform:capitalize;
-    letter-spacing:1px;
-    font-size:$size;
+.btn {
+    @include buttonStyle
 }
 
 body {
-    @include primaryFont (1.6rem);
-
+    @include primaryFont ($mediumFontSize);
+    
     input, button, a {
-        @include primaryFont(1.6rem);
+        @include primaryFont($mediumFontSize);
     }
-
+    
     footer {
-        @include primaryFont(1.2rem);
+        @include primaryFont($smallFontSize);
         letter-spacing:0;
+        padding: 15px 0;
     }
-
+    
+    background: $primaryColorLighter;
 }
+

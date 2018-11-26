@@ -1,0 +1,14 @@
+$primaryFont: 'Montserrat', sans-serif;
+$titleFont: 'Noto Serif', serif;
+
+$primaryColor: black;
+$primaryColorLight: lighten($primaryColor, 10);
+$primaryColorLighter: lighten($primaryColor, 20);
+$secondaryColor: whitesmoke;
+$accentColor: darken(rgb(221, 108, 3), 5);
+
+// font sizes 
+$smallFontSize: 1.4rem;
+$mediumFontSize: 1.8rem;
+$largeFontSize: 4.5rem;
+

@@ -4,120 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Noto+Serif" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Noto+Serif:400,600" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="styles/styles.css">
-    <title>What Do Tonight?</title>
+    <title>What Eat?</title>
 </head>
-<body>
-    <!-- HEADER -->
-    <header id="random" class="animated fadeIn">
-        <div class="header">
 
-            <h1 class="animated fadeInLeftBig">What to 
+<body>
+    <header class="animated fadeIn wrapper" id="random" >
+        <div class="header">
+            <h1 class="animated fadeInLeftBig">
                 <img src="assets/dinnericon.svg" alt="">
-            <span>do tonight?</span></h1>
+                <span>What to </span>
+                <span>Eat tonight?</span>
+            </h1>
             
             <form action="" class="searchBar animated bounceInUp">
                 <label for="userInput"></label>
-                 <input type="text" placeholder="What city are you in?" id="userInput" class="input">
-
-                <a class="search" href="#cuisines" title="search cuisines in that city"><i class="fas fa-search"></i></a>
+                 <input type="text" placeholder="What city are you in?" id="userInput" class="input" required>
+                <button type="submit" class="search btn" title="Search cuisines in that city">
+                    <i class="fas fa-search"></i>
+                </button>
             </form>
-
         </div>
     </header>
-    <!-- HEADER ENDS -->
-
 
     <!-- SELECTION -->
-    <section class="selectionSection">
-
-            <div class="cuisinesSection" id="cuisines">
-                <h2>You Chose <span>{CityName}!</span></h2>
-                <form action="" class="form">
-                    <label for="cuisines">Choose A Cuisine!</label>
-                    <select name="cuisines" id="selectCuisines">
-                        <!-- <option value="">Asian</option> -->
-                    </select>
-                    <a href="#drinks" title="jump to drinks selection">Next Selection</a>
-                </form>
-            </div>
-
-            <div class="drinksSection" id="drinks">
-            <h2>You Chose <span>{CUISINE}!</span></h2>
-                <form action="" class="form">
-                <label for="drinks">Choose A Drink!</label>
-                <select name="cuisines" id="selectCuisines">
-                    <!-- <option value="">Bubble Tea</option>-->
+    <section class="selectionSection wrapper">
+        <div class="cuisinesSection" id="cuisines">
+            <form class="cuisinesForm form" action="">
+                <label for="cuisines">Choose A Cuisine!</label>
+                <select name="cuisines" id="selectCuisines" required>
+                    <option value="" selected disabled>Choose a cuisine</option>
                 </select>
-                <a href="#results" title="jump to results">Find out where we're going</a>
-                </form>
-    </section>
-    <!-- SELECTION ENDS -->
+                <label for="submitCuisine"></label>
+                <button class="btn" type="submit" title ="Show what associated restaurants in the area" id="submitCuisine">
+                    Show restaurant
+                </button>
+            </form>
+        </div>
 
+    </section>
 
     <!-- RESULTS -->
-    <section class="resultsSection">
+    <section class="resultsSection wrapper">
+        <div class="cuisineResults" id="results"></div>
+        <div class="restDetailsWrapper"></div>
 
-            <div class="cuisineResults" id="results">
-                <h2>${RESTAURANT NAME}</h2>
-                <div class="imageResults">
-                    <img src="${IMG URL}" alt="">
-                </div>
-                <p>${RESTAURANT LOCATION}</p>
-            </div>
+        <!-- buttons -->
+        <form id="newSearchForm"> 
+            <label for="anotherSuggestion"></label>
+            <button id="anotherSuggestion" class="btn">Another one</button>
 
-            <div class="drinkResults">
-                <h2>${DRINK NAME}</h2>
-                <div class="imageResults">
-                    <img src="${DRINK URL}" alt="">
-                </div>
-                <p>${DRINK NAME}</p>
-            </div>
-
+            <label for="newSearch"></label>
+            <button type="submit" value="New Search" class="btn" id="newSearch"> New Search </button>
+        </form>
     </section>
-    <!-- SECTION ENDS -->
 
     <!-- FOOTER -->
-    <footer>
+    <footer class="wrapper">
         <p>Created by Teresa Vien and Nova Quach | HackerYou 2018 | APIs provided by Zomato</p>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="script.js"></script>
-
-    <script>
-        var imgCount = 3;
-        var dir = 'assets/';
-        var randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
-        var images = new Array
-            images[1] = "img1.jpg",
-            images[2] = "img2.jpg",
-            images[3] = "img3.jpg",
-
-
-
-        //document ready
-        $(function(){
-            document.getElementById("random").style.background = "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(" + dir + images[randomCount] + ") no-repeat center";
-
-            // $('button').on('click', function (event) {
-            //         var target = $(this.getAttribute('href'));
-            //         if (target.length) {
-            //             event.preventDefault();
-            //             $('html, body').stop().animate({
-            //                 scrollTop: target.offset().top
-            //             }, 1000);
-            //         }
-            //     });
-
-        });
-
-      
-
-
-    </script>
 </body>
 </html>

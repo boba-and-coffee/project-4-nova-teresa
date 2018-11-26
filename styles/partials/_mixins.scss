@@ -1,0 +1,14 @@
+@mixin primaryFont($size) {
+    font-family: $primaryFont;
+    color:$secondaryColor;
+    text-transform:capitalize;
+    letter-spacing:1px;
+    font-size:$size;
+}
+
+@mixin buttonStyle {
+    background:$primaryColor;
+    border:none;
+    padding: 20px;
+    border-radius: 15px;
+}

@@ -1,0 +1,50 @@
+@media(max-width:1500px) {
+    .wrapper {
+        max-width: 1500px;
+        width: 100%;
+    }
+}
+
+@media(max-width:768px) {
+    #random .header {
+        width: 100%;
+    }
+
+    .restDetailsWrapper{
+        width: 90%;
+    }
+
+    .restTitle {
+        width: 90%;
+    }
+    
+    .searchBar {
+        width: 100%;
+    }
+
+    #random .header .searchBar .input {
+        width: 50%;
+        margin-right: 0;
+    }
+
+    #selectCuisines {
+        width: 50%;
+        padding: 0 5px;
+    }
+
+    #anotherSuggestion, #newSearch{
+        margin: 30px 20px 10px 20px;
+        width: 90%;
+    }
+}
+
+@media(max-width:450px) {
+    #random .header .searchBar .input {
+        width: 75%;
+    }
+
+    #selectCuisines {
+        width: 80%;
+        padding: 0 5px;
+    }
+}
