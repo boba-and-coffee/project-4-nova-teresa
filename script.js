@@ -10,7 +10,16 @@ const app = {
 
 app.url = 'https://developers.zomato.com/api/v2.1/location_details?entity_id=89&entity_type=city';
 
-setupBackground = function () {
+// Start app
+app.init = function () {
+    app.setupBackground();
+    app.setupLocationForm();
+    app.setupCuisineForm();
+    app.setupNewSuggestion();
+    app.setupNewSearch();
+};
+
+app.setupBackground = function () {
     const imgCount = 3;
     const dir = 'assets/';
     const randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
@@ -19,7 +28,7 @@ setupBackground = function () {
         images[2] = "img2.jpg",
         images[3] = "img3.jpg",
 
-    $("#random").css("background", "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(" + dir + images[randomCount] + ") no-repeat center");
+    $("#random").css("background", "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(" + dir + images[randomCount] + ") no-repeat center");
 };
 
 
@@ -226,19 +235,11 @@ app.setupNewSearch = function () {
 }
 
 
-// Start app
-app.init = function () {
-    setupBackground();
-    app.setupLocationForm();
-    app.setupCuisineForm();
-    app.setupNewSuggestion();
-    app.setupNewSearch();
-};
-
 //document ready 
 $(function () {
     app.init();
-}); //document  ready ends 
+}); 
+//document  ready ends 
 
 // app.geolocateUser = function() {
 //     var options = {

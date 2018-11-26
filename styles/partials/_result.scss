@@ -1,13 +1,15 @@
 .resultsSection {
-    background:lighten($primaryColor, 10);
+    background: $primaryColorLight;
     // display:flex;     
-    width:100%;
+    width:1 00%;
+    height: 500px;
     text-align:center;
 }
 
 .restDetailsWrapper {
     text-align:left;
-    width:80%;
+    width: 600px;
+    margin: 0 auto;
 }
 
 .restTitle {
