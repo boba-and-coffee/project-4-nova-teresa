@@ -317,6 +317,8 @@ input:focus {
           appearance: none;
   border: none;
   height: 40px;
+  width: 300px;
+  padding: 0 10px;
 }
 
 .cuisinesOptions {
@@ -375,7 +377,6 @@ input:focus {
 
 .resultsSection {
   background: #1a1a1a;
-  width: 100%;
   height: 100%;
   min-height: 500px;
   text-align: center;
@@ -441,32 +442,47 @@ footer p {
   padding: 0;
 }
 
-@media (max-width: 321px) {
+@media (max-width: 1500px) {
   .wrapper {
-    max-width: 320px;
-    width: 320px;
+    max-width: 1500px;
+    width: 100%;
   }
+}
+
+@media (max-width: 768px) {
   #random .header {
-    width: 280px;
-    padding: 50px 0;
+    width: 100%;
   }
   .restDetailsWrapper {
-    width: 260px;
+    width: 90%;
   }
   .restTitle {
-    width: 320px;
+    width: 90%;
   }
   .searchBar {
-    width: 280px;
+    width: 100%;
   }
   #random .header .searchBar .input {
-    width: 200px;
+    width: 50%;
+    margin-right: 0;
+  }
+  #selectCuisines {
+    width: 50%;
+    padding: 0 5px;
   }
   #anotherSuggestion, #newSearch {
-    margin: 50px 20px 10px 20px;
+    margin: 30px 20px 10px 20px;
+    width: 90%;
   }
-  body input {
-    font-size: 1.4rem;
+}
+
+@media (max-width: 450px) {
+  #random .header .searchBar .input {
+    width: 75%;
+  }
+  #selectCuisines {
+    width: 80%;
+    padding: 0 5px;
   }
 }
 /*# sourceMappingURL=styles.css.map */
