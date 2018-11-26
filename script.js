@@ -28,7 +28,8 @@ app.setupBackground = function () {
         images[2] = "img2.jpg",
         images[3] = "img3.jpg",
 
-    $("#random").css("background", "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(" + dir + images[randomCount] + ") no-repeat center");
+    $('#random').css('background', 'linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(' + dir + images[randomCount] + ') no-repeat center');
+    $('#anotherSuggestion, #newSearch').hide();
 };
 
 
@@ -124,7 +125,7 @@ app.setupCuisineForm = function () {
                 app.restaurants = res.restaurants;
                 const restDetails = app.getRestaurantDetails(app.restaurants);
                 app.displayRestaurantDetails(restDetails);
-                
+                $('#anotherSuggestion, #newSearch').show();
                 $('.resultsSection').get(0).scrollIntoView(true);
                 $('#setupCuisineForm').prop("disabled", true);
             });
@@ -210,7 +211,7 @@ app.displayRestaurantDetails = function (restDetails){
         `
         <div><span class="infoTitle">Categories</span>${restDetails.categories}</div>
         <div><span class="infoTitle">Price range</span>${restDetails.price_range_symbol}</div>
-        <div><span class="infoTitle">Rating<span>${restDetails.rating}</div>
+        <div><span class="infoTitle">Rating</span>${restDetails.rating}</div>
         <div><span class="infoTitle">Address</span>${restDetails.address}</div>
         <div><span class="infoTitle">Photos</span><a href='${restDetails.photos_url}' target='_blank'>Photos here</a></div>
         <div><span class="infoTitle">Menu</span><a href='${restDetails.menu_url}' target='_blank'>Menu here</a></div>
