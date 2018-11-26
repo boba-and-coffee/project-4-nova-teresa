@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="styles/styles.css">
     <title>What Do Tonight?</title>
 </head>
+
 <body>
-    <header id="random" class="animated fadeIn">
+    <div class="header-wrapper">
+    <header class="animated fadeIn" id="random" >
         <div class="header">
             <h1 class="animated fadeInLeftBig">What to 
                 <img src="assets/dinnericon.svg" alt="">
@@ -25,6 +27,7 @@
             </form>
         </div>
     </header>
+    </div>
 
     <!-- SELECTION -->
     <section class="selectionSection">
@@ -44,6 +47,8 @@
     <!-- RESULTS -->
     <section class="resultsSection">
         <div class="cuisineResults" id="results"></div>
+        <div class="restDetailsWrapper"></div>
+
         <!-- buttons -->
         <form id="newSearchForm"> 
             <label for="anotherSuggestion"></label>

@@ -34,6 +34,7 @@ app.setupLocationForm = function () {
             })
             .then(() => {
                 $('#cuisines').get(0).scrollIntoView(true);
+                $(this).delay(1000);
             })
         console.log(app.userInput)
     });
@@ -78,7 +79,7 @@ app.getLocation = function(query) {
 
 const displayCity = function(locationName){
     $('.cityName').empty();
-    $('#cuisines').prepend(`<h2 class="cityName"><span class="preTitle">Looking in</span>${locationName}</h2>`)
+    $('#cuisines').prepend(`<h2 class="cityName"><span class="locationName">Looking in</span>${locationName}</h2>`)
 }
 
 app.getCuisine = function(city_id) {
@@ -194,7 +195,10 @@ const getPriceRangeSymbol = function getPriceRange(price_range){
 app.displayRestaurantDetails = function (restDetails){
     $('.cuisineResults').empty()
     $('.cuisineResults').append(
-        `<h2 class="restTitle"> ${restDetails.name} </h2>
+        `<h2 class="restTitle"> ${restDetails.name} </h2>`
+    )
+    $('.restDetailsWrapper').append(
+        `
         <div><span class="infoTitle">Categories</span>${restDetails.categories}</div>
         <div><span class="infoTitle">Price range</span>${restDetails.price_range_symbol}</div>
         <div><span class="infoTitle">Rating<span>${restDetails.rating}</div>
@@ -202,9 +206,6 @@ app.displayRestaurantDetails = function (restDetails){
         <div><span class="infoTitle">Photos</span><a href='${restDetails.photos_url}' target='_blank'>Photos here</a></div>
         <div><span class="infoTitle">Menu</span><a href='${restDetails.menu_url}' target='_blank'>Menu here</a></div>
         `
-        // < div > <span class="infoTitle"></span></div >
-        // <div><span class="infoTitle"></span></div>
-
         );
 }
 
